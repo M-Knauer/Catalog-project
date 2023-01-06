@@ -470,3 +470,15 @@ Caused by: org.eclipse.core.runtime.CoreException: Cannot determine URI for '/ds
 2023-01-06 17:03:09,029 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources
 2023-01-06 17:03:09,044 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
 2023-01-06 17:03:09,047 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\projetos\Bootcamp spring 3.0\ProjectCatalog\backend\src\test\resources
+2023-01-06 19:09:31,820 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources
+2023-01-06 19:09:31,838 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-01-06 19:09:31,839 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\projetos\Bootcamp spring 3.0\ProjectCatalog\backend\src\test\resources
+2023-01-06 19:13:24,796 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources
+2023-01-06 19:13:24,804 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-01-06 19:13:24,807 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\projetos\Bootcamp spring 3.0\ProjectCatalog\backend\src\test\resources
+2023-01-06 19:19:49,914 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources
+2023-01-06 19:19:49,921 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-01-06 19:19:49,935 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\projetos\Bootcamp spring 3.0\ProjectCatalog\backend\src\test\resources
+2023-01-06 19:23:58,500 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources
+2023-01-06 19:23:58,509 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2023-01-06 19:23:58,511 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\projetos\Bootcamp spring 3.0\ProjectCatalog\backend\src\test\resources

@@ -1,10 +1,12 @@
 package com.dscatalog.main.services;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +14,7 @@ import com.dscatalog.main.dto.CategoryDTO;
 import com.dscatalog.main.entities.Category;
 import com.dscatalog.main.repositories.CategoryRepository;
 import com.dscatalog.main.services.exceptions.ControllerNotFoundException;
+import com.dscatalog.main.services.exceptions.DatabaseException;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -22,17 +25,16 @@ public class CategoryService {
 	private CategoryRepository cr;
 	
 	@Transactional(readOnly = true)
-	public List<CategoryDTO> findAll() {	
-		return cr.findAll().stream()
-				.map(x -> new CategoryDTO(x))
-				.collect(Collectors.toList());
+	public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
+	
+		return cr.findAll(pageRequest).map(x -> new CategoryDTO(x));
 	}
 
 	@Transactional(readOnly = true)
 	public CategoryDTO findById(Long id) {
 		Optional<Category> obj = cr.findById(id);
 		
-		return new CategoryDTO(obj.orElseThrow(() -> new ControllerNotFoundException("Entity not found")));
+		return new CategoryDTO(obj.orElseThrow(() -> new ControllerNotFoundException("Entity not found "+id)));
 	}
 
 	@Transactional
@@ -55,7 +57,22 @@ public class CategoryService {
 		return new CategoryDTO(cr.save(entity));
 		
 		} catch(EntityNotFoundException e) {
-			throw new ControllerNotFoundException("ID not found");
+			throw new ControllerNotFoundException("ID not found "+id);
 		}
+	}
+
+	public void delete(Long id) {
+		
+		try {
+			cr.deleteById(id);
+			
+		} catch (EmptyResultDataAccessException e) {
+			throw new ControllerNotFoundException("Id not found "+id);
+			
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
+		}
+		
+		
 	}
 }
