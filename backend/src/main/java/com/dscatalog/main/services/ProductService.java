@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dscatalog.main.dto.ProductDTO;
@@ -29,9 +30,9 @@ public class ProductService {
 	private CategoryRepository categoryRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAllPaged(PageRequest pageRequest) {
+	public Page<ProductDTO> findAllPaged(Pageable pageable) {
 	
-		return repository.findAll(pageRequest).map(x -> new ProductDTO(x));
+		return repository.findAll(pageable).map(x -> new ProductDTO(x));
 	}
 
 	@Transactional(readOnly = true)
@@ -62,6 +63,7 @@ public class ProductService {
 		}
 	}
 
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		
 		try {

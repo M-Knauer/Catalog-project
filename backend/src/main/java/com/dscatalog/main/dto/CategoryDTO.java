@@ -4,10 +4,16 @@ import java.io.Serializable;
 
 import com.dscatalog.main.entities.Category;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class CategoryDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	
+	@NotBlank(message = "Nome não pode ser vazio")
+	@Size(max = 30)
 	private String name;
 	
 	public CategoryDTO() {
