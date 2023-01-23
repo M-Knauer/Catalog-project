@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -150,7 +151,17 @@ public class ProductServiceTest {
 		});
 		
 		Mockito.verify(repository).getReferenceById(nonId);
+	}
+	
+	@Test
+	public void saveShouldReturnProduct() {
+		ProductDTO res = service.insert(dto);
 		
+		ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
+		
+		Assertions.assertNotNull(res.getId());
+		
+		Mockito.verify(repository).save(argument.capture());
 	}
 	
 }
