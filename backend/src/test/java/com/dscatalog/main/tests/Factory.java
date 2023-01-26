@@ -9,7 +9,7 @@ import com.dscatalog.main.entities.Product;
 public class Factory {
 
 	public static Product createProduct() {
-		Product product = new Product(1L, "Phone", "Descrição", 800D, "Imagem", Instant.parse("2020-08-08T03:00:00Z"));
+		Product product = new Product(1L, "Phone", "Descriçãaaaaaaaaaaaaaaaao", 800D, "Imagem", Instant.parse("2020-08-08T03:00:00Z"));
 		product.getCategories().add(createCategory());
 		return product;
 	}
