@@ -7,10 +7,12 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.security.DrbgParameters.Reseed;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -28,6 +30,7 @@ import com.dscatalog.main.services.ProductService;
 import com.dscatalog.main.services.exceptions.ControllerNotFoundException;
 import com.dscatalog.main.services.exceptions.DatabaseException;
 import com.dscatalog.main.tests.Factory;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(ProductController.class)
@@ -66,6 +69,8 @@ public class ProductControllerTest {
 		
 		when(service.update(eq(existingId), any())).thenReturn(productDTO);
 		when(service.update(eq(nonId), any())).thenThrow(ControllerNotFoundException.class);
+		
+		when(service.insert(any())).thenReturn(productDTO);
 	}
 	
 	@Test
@@ -136,5 +141,21 @@ public class ProductControllerTest {
 				.accept(MediaType.APPLICATION_JSON));
 		
 		result.andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void insertShouldReturnProductDto() throws Exception {
+		String jsonBody = objectMapper.writeValueAsString(productDTO);
+		
+		ResultActions result = mockMvc.perform(post("/products")
+				.content(jsonBody)
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+				);
+		
+		result.andExpect(status().isCreated());
+		result.andExpect(jsonPath("$.id").exists());
+		result.andExpect(jsonPath("$.name").exists());
+		result.andExpect(jsonPath("$.description").exists());
 	}
 }
