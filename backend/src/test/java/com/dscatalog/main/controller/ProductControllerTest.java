@@ -12,7 +12,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.security.DrbgParameters.Reseed;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +29,6 @@ import com.dscatalog.main.services.ProductService;
 import com.dscatalog.main.services.exceptions.ControllerNotFoundException;
 import com.dscatalog.main.services.exceptions.DatabaseException;
 import com.dscatalog.main.tests.Factory;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(ProductController.class)
