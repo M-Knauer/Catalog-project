@@ -12,7 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-.metadata
+
 
 ### IntelliJ IDEA ###
 .idea
@@ -31,4 +31,9 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
+<<<<<<< HEAD
 .vscode/
+=======
+.vscode/
+>>>>>>> bb7ce8f033274f31fcac87f132f3179ce57a85d8
+.metadata

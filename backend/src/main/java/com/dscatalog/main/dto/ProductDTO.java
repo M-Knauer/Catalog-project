@@ -10,14 +10,24 @@ import java.util.Set;
 import com.dscatalog.main.entities.Category;
 import com.dscatalog.main.entities.Product;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 
 public class ProductDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@NotBlank(message = "Nome não pode ser vazio")
+	@Size(max = 30, message = "Nome não pode ser maior do que 30 caracteres")
 	private String name;
 	
+	@NotBlank(message = "Descrição não pode ser vazio")
+	@Size(min = 10, message = "Descrição não pode ser menor do que 10 caracteres")
 	private String description;
+	
+	@Positive(message = "Preço não pode ser negativo")
 	private Double price;
 	private String imgUrl;
 	
